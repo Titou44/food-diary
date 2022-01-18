@@ -60,6 +60,9 @@ class GithubUserProviderTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('AppBundle\Entity\User', get_class($user));
     }
 
+    /**
+     * Test exception
+     */
     public function testLoadUserByUsernameThrowingException()
     {
         $this->client
@@ -81,8 +84,9 @@ class GithubUserProviderTest extends \PHPUnit_Framework_TestCase
         $this->expectExceptionMessage('Did not managed to get your user info from Github.');
 
         $githubUserProvider = new GithubUserProvider($this->client, $this->serializer);
-        $user = $githubUserProvider->loadUserByUsername('an-access-token');
+        $githubUserProvider->loadUserByUsername('an-access-token');
     }
+
      public function tearDown()
     {
         $this->client = null;
